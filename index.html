@@ -3,330 +3,608 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TITKIN.DEV | Vibe Coder</title> <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
-
+    <title>TITKIN.DEV | Vibe Coder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
     <style>
-        :root {
-            --bg-dark: #010101;
-            --accent-cyan: #00eaff;
-            --accent-magenta: #ff00ff;
-        }
-
-        /* --- BASIC RESET & SCROLL FIX --- */
-        body {
+        * {
             margin: 0;
-            background: var(--bg-dark);
-            color: white;
-            font-family: 'Space Grotesk', sans-serif;
-            min-height: 100vh; 
-            overflow-x: hidden; 
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: auto; 
-        }
-
-        /* Ukrywamy systemowy kursor tylko gdy mamy myszkę */
-        @media (hover: hover) and (pointer: fine) {
-            body { cursor: none; }
-        }
-
-        /* --- 1. BACKGROUND --- */
-        .energy-wave {
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.12), transparent 60%),
-                conic-gradient(from 180deg at 50% 50%, rgba(255, 0, 255, 0.05), transparent 60%);
-            filter: blur(60px);
-            animation: rotateWave 22s linear infinite;
-            z-index: 1;
-            pointer-events: none;
-        }
-        @keyframes rotateWave {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .scanlines {
-            position: fixed;
-            inset: 0;
-            background: repeating-linear-gradient(
-                to bottom,
-                rgba(255, 255, 255, 0.02) 0px,
-                rgba(255, 255, 255, 0.02) 1px,
-                transparent 2px,
-                transparent 3px
-            );
-            opacity: 0.25;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        /* --- 2. CARD --- */
-        .scene {
-            perspective: 1400px;
-            width: 100%;
-            padding: 20px; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-            min-height: 100vh; 
+            padding: 0;
             box-sizing: border-box;
         }
 
-        .heroCard {
-            width: 100%;
-            max-width: 1000px;
-            border-radius: 20px;
-            background: rgba(5, 5, 5, 0.55);
-            backdrop-filter: blur(18px) saturate(160%);
-            border: 2px solid rgba(255, 255, 255, 0.06);
-            box-shadow: 0 0 40px rgba(0, 255, 255, 0.08), inset 0 0 20px rgba(255, 0, 255, 0.04);
-            transform-style: preserve-3d;
-            position: relative;
-            overflow: hidden;
+        :root {
+            --bg: #ffffff;
+            --fg: #000000;
+            --accent: #0000ff;
+            --border: #000000;
+            --subtle: #666666;
         }
 
-        .heroCard::after {
-            content: '';
-            position: absolute;
-            top: -100%; left: 0; width: 100%; height: 200%;
-            background: linear-gradient(transparent, rgba(0,255,255,0.1), transparent);
-            animation: shine 6s infinite linear;
-            pointer-events: none;
-        }
-        @keyframes shine {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(100%); }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.5;
+            overflow-x: hidden;
         }
 
-        /* --- 3. TYPO --- */
-        .mega {
-            font-family: 'Syncopate', sans-serif;
+        /* CONTAINER */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* NAVBAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-status {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            background: #00ff00;
+            border: 2px solid var(--border);
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0.3; }
+        }
+
+        /* HERO */
+        .hero {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            padding: 4rem 0;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--fg);
+            color: var(--bg);
+            font-size: 0.875rem;
             font-weight: 700;
             text-transform: uppercase;
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+            letter-spacing: 0.1em;
+            margin-bottom: 3rem;
+            border: 3px solid var(--border);
+            box-shadow: 6px 6px 0 var(--border);
+        }
+
+        .hero-title {
+            font-size: clamp(3.5rem, 12vw, 10rem);
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+        }
+
+        .highlight {
+            background: var(--accent);
+            color: var(--bg);
+            padding: 0 0.2em;
+            display: inline-block;
+        }
+
+        .hero-description {
+            font-size: clamp(1.25rem, 2.5vw, 2rem);
+            max-width: 800px;
+            margin-bottom: 3rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .hero-description strong {
+            background: var(--fg);
+            color: var(--bg);
+            padding: 0 0.3em;
+        }
+
+        /* BUTTONS */
+        .button-group {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.25rem 3rem;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s ease;
+            border: 3px solid var(--border);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--fg);
+            color: var(--bg);
+            box-shadow: 6px 6px 0 var(--border);
+        }
+
+        .btn-primary:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0 var(--border);
+        }
+
+        .btn-primary:active {
+            transform: translate(6px, 6px);
+            box-shadow: none;
+        }
+
+        .btn-secondary {
+            background: var(--bg);
+            color: var(--fg);
+            box-shadow: 6px 6px 0 var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--fg);
+            color: var(--bg);
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0 var(--border);
+        }
+
+        /* SECTION HEADER */
+        .section-header {
+            padding: 4rem 0 3rem;
+            border-top: 2px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 2.5rem;
+            font-weight: 900;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* FEATURES GRID */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+            border: 3px solid var(--border);
+            margin-bottom: 0;
+        }
+
+        .feature-card {
+            padding: 3rem;
+            border-right: 3px solid var(--border);
+            border-bottom: 3px solid var(--border);
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .feature-card:nth-child(2n) {
+            border-right: none;
+        }
+
+        .feature-card:nth-last-child(-n+2) {
+            border-bottom: none;
+        }
+
+        .feature-card:hover {
+            background: var(--fg);
+            color: var(--bg);
+        }
+
+        .feature-card:hover .feature-icon {
+            background: var(--bg);
+            color: var(--fg);
+        }
+
+        .feature-card:hover code {
+            background: var(--bg);
+            color: var(--fg);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--fg);
+            color: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            border: 3px solid var(--border);
+            font-weight: 900;
+        }
+
+        .feature-card h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .feature-card p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .feature-card code {
+            display: block;
+            padding: 1rem;
+            background: var(--fg);
+            color: var(--bg);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            border: 3px solid var(--border);
+            font-weight: 500;
+        }
+
+        /* TERMINAL */
+        .terminal-section {
+            border-top: 2px solid var(--border);
+            padding: 4rem 0;
+        }
+
+        .terminal {
+            border: 3px solid var(--border);
+            background: var(--fg);
+            color: var(--bg);
+            box-shadow: 12px 12px 0 var(--border);
+        }
+
+        .terminal-header {
+            background: var(--bg);
+            color: var(--fg);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 3px solid var(--border);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+        }
+
+        .terminal-dot {
+            width: 16px;
+            height: 16px;
+            border: 3px solid var(--border);
+        }
+
+        .dot-red { background: #ff0000; }
+        .dot-yellow { background: #ffff00; }
+        .dot-green { background: #00ff00; }
+
+        .terminal-body {
+            padding: 2.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            line-height: 2;
+            font-weight: 500;
+        }
+
+        .terminal-line {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .line-number {
+            color: var(--subtle);
+            user-select: none;
+            min-width: 2ch;
+        }
+
+        .code-keyword { color: #00ff00; font-weight: 700; }
+        .code-function { color: #00ffff; font-weight: 700; }
+        .code-string { color: #ffff00; }
+        .code-comment { color: var(--subtle); }
+
+        /* CTA */
+        .cta-section {
+            padding: 8rem 0;
+            text-align: center;
+            border-top: 2px solid var(--border);
+        }
+
+        .cta-title {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
             line-height: 1;
         }
-        .mega span {
-            display: block;
-            background: linear-gradient(to right, white, #aaa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+
+        .cta-description {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            font-weight: 600;
         }
 
-        .statusDot {
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            background: #00ff88;
-            box-shadow: 0 0 12px #00ff88;
+        /* FOOTER */
+        footer {
+            border-top: 2px solid var(--border);
+            padding: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
         }
 
-        /* --- 4. TERMINAL --- */
-        .terminal {
-            background: rgba(0,0,0,0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1.25rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem; 
-            position: relative;
-            overflow: hidden;
-            box-shadow: inset 0 0 30px rgba(0, 234, 255, 0.05);
+        .footer-links {
+            display: flex;
+            gap: 2rem;
         }
 
-        /* --- 5. CURSOR --- */
-        .cDot, .cRing {
-            display: none; 
-            pointer-events: none;
-            position: fixed;
-            z-index: 9999;
-        }
-        
-        @media (hover: hover) and (pointer: fine) {
-            .cDot, .cRing { display: block; }
+        .footer-links a {
+            color: var(--fg);
+            text-decoration: none;
+            padding-bottom: 2px;
+            border-bottom: 3px solid transparent;
+            transition: border-color 0.2s ease;
         }
 
-        .cDot {
-            width: 8px; height: 8px;
-            background: white; border-radius: 50%;
+        .footer-links a:hover {
+            border-bottom-color: var(--fg);
         }
-        .cRing {
-            width: 40px; height: 40px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            transition: width .3s, height .3s, border-color .3s, background .3s;
-            z-index: 9998;
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 0;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 3rem 0;
+            }
+
+            .button-group {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                border-right: none !important;
+                border-bottom: 3px solid var(--border) !important;
+            }
+
+            .feature-card:last-child {
+                border-bottom: none !important;
+            }
+
+            .terminal {
+                box-shadow: 6px 6px 0 var(--border);
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <!-- NAVBAR -->
+        <nav>
+            <div class="logo">TITKIN.DEV</div>
+            <div class="nav-status">
+                <div class="status-dot"></div>
+                <span>ONLINE</span>
+            </div>
+        </nav>
 
-    <div class="energy-wave"></div>
-    <div class="scanlines"></div>
+        <!-- HERO -->
+        <section class="hero">
+            <div>
+                <div class="hero-badge">⚡ VIBE MODE</div>
+                
+                <h1 class="hero-title">
+                    <span class="highlight">ARCHITEKT</span><br/>
+                    INTENCJI
+                </h1>
+                
+                <p class="hero-description">
+                    Przekuwam wizje w kod z prędkością AI. 
+                    <strong>Algorytm to narzędzie</strong>, flow to metoda. 
+                    Tworzę doświadczenia cyfrowe, które łączą logikę z intuicją.
+                </p>
+                
+                <div class="button-group">
+                    <a href="mailto:titkin@int.pl" class="btn btn-primary">
+                        Połącz się →
+                    </a>
+                    <a href="#features" class="btn btn-secondary">
+                        Zobacz stack
+                    </a>
+                </div>
+            </div>
+        </section>
 
-    <div class="scene">
-        <div class="heroCard p-6 md:p-16" id="hero3d">
+        <!-- FEATURES -->
+        <section id="features">
+            <div class="section-header">
+                <div class="section-title">// STACK & CAPABILITIES</div>
+                <div class="section-subtitle">Czym się zajmuję</div>
+            </div>
             
-            <div class="flex flex-col md:flex-row gap-8 md:gap-12 items-center md:items-start relative z-10">
-
-                <div class="flex-1 text-center md:text-left w-full">
-                    <div class="flex items-center justify-center md:justify-start gap-3 mb-4 opacity-80">
-                        <div class="statusDot"></div>
-                        <span class="text-[10px] md:text-xs tracking-widest text-cyan-400 font-mono border border-white/10 px-2 py-1 rounded uppercase">VIBE_MODE: ON</span>
-                    </div>
-
-                    <h1 class="mega text-4xl sm:text-6xl md:text-8xl">
-                        <span>TITKIN</span>
-                        <span style="font-size:0.45em;">.DEV</span>
-                    </h1>
-
-                    <div class="mt-6 md:mt-8">
-                        <p class="text-white text-lg md:text-xl font-medium tracking-wide">
-                            ARCHITEKT INTENCJI
-                        </p>
-                        <p class="text-gray-400 mt-2 text-sm md:text-lg leading-relaxed max-w-sm mx-auto md:mx-0">
-                            Przekuwam wizje w kod z prędkością AI. <br class="hidden md:block" />
-                            Algorytm to narzędzie, <span class="text-cyan-400">flow</span> to metoda.
-                        </p>
-                    </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Vibe Coding</h3>
+                    <p>Programowanie w stanie flow. AI jako partner, nie zamiennik. Szybkie prototypy, czyste rozwiązania.</p>
+                    <code>const vibe = code + intuition</code>
                 </div>
 
-                <div class="flex-1 w-full max-w-md">
-                    <div class="terminal">
-                        <div class="flex gap-2 mb-3 opacity-60">
-                            <div class="w-2.5 h-2.5 bg-red-500/50 rounded-full"></div>
-                            <div class="w-2.5 h-2.5 bg-yellow-500/50 rounded-full"></div>
-                            <div class="w-2.5 h-2.5 bg-green-500/50 rounded-full"></div>
-                        </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏗️</div>
+                    <h3>Logic Architecture</h3>
+                    <p>Od koncepcji do produkcji. Fullstack development z naciskiem na skalowalność i performance.</p>
+                    <code>React • Next.js • Node • APIs</code>
+                </div>
 
-                        <div class="text-gray-300 leading-6">
-                            <span class="text-cyan-400">const</span> <span class="text-pink-400">stack</span> = {<br />
-                            &nbsp;&nbsp;core: ['<span class="text-yellow-200">Vibe Coding</span>', '<span class="text-yellow-200">Logic Arch.</span>'],<br />
-                            &nbsp;&nbsp;extra: ['LLM Whispering', 'AI Audio'],<br />
-                            &nbsp;&nbsp;run: <span class="text-purple-400">async</span> () => {<br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;<span id="typeArea" class="text-green-300"></span><span class="animate-pulse">_</span><br />
-                            &nbsp;&nbsp;}<br />
-                            }
-                        </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>LLM Whispering</h3>
+                    <p>Prompt engineering na poziomie zaawansowanym. Integracje AI, które faktycznie działają.</p>
+                    <code>GPT-4 • Claude • Custom Models</code>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎵</div>
+                    <h3>AI Audio Design</h3>
+                    <p>Generatywna muzyka i sound design. Suno AI, voice synthesis, audio processing.</p>
+                    <code>Suno • ElevenLabs • Audio APIs</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- TERMINAL -->
+        <section class="terminal-section">
+            <div class="section-header" style="padding-top: 0; border: none;">
+                <div class="section-title">// LIVE PROCESS</div>
+                <div class="section-subtitle">Jak pracuję</div>
+            </div>
+            
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dot dot-red"></div>
+                    <div class="terminal-dot dot-yellow"></div>
+                    <div class="terminal-dot dot-green"></div>
+                    <span style="margin-left: 1rem;">vibe-session.js</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">
+                        <span class="line-number">1</span>
+                        <span><span class="code-keyword">const</span> <span class="code-function">createMagic</span> = <span class="code-keyword">async</span> () => {</span>
                     </div>
-
-                    <div class="mt-6 md:mt-8 flex flex-col sm:flex-row justify-between items-center border-t border-white/10 pt-4 gap-4">
-                        <a href="mailto:titkin@int.pl" class="text-white font-mono text-sm hover:text-cyan-400 transition py-2 px-4 border border-white/5 rounded bg-white/5 hover:bg-white/10">
-                            > POŁĄCZ SIĘ
-                        </a>
-                        <span class="text-xs text-gray-600 font-mono">EST. 2025</span>
+                    <div class="terminal-line">
+                        <span class="line-number">2</span>
+                        <span>  <span class="code-keyword">const</span> idea = <span class="code-keyword">await</span> <span class="code-function">captureVision</span>();</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="line-number">3</span>
+                        <span>  <span class="code-keyword">const</span> prototype = <span class="code-function">rapidDev</span>(idea);</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="line-number">4</span>
+                        <span>  <span class="code-keyword">const</span> refined = <span class="code-keyword">await</span> <span class="code-function">aiAssist</span>(prototype);</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="line-number">5</span>
+                        <span>  <span class="code-keyword">return</span> <span class="code-function">deploy</span>(refined);</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="line-number">6</span>
+                        <span>}</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="line-number">7</span>
+                        <span></span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="line-number">8</span>
+                        <span class="code-comment">// Proces twórczy w stanie flow</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="line-number">9</span>
+                        <span><span class="code-function">createMagic</span>().<span class="code-function">then</span>(() => console.<span class="code-function">log</span>(<span class="code-string">'✨'</span>));</span>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <h2 class="cta-title">
+                Masz pomysł?<br/>
+                Zbudujmy to razem.
+            </h2>
+            <p class="cta-description">
+                Od koncepcji po deployment. Szybko, sprawnie, z dbałością o detale.
+            </p>
+            <a href="mailto:titkin@int.pl" class="btn btn-primary">
+                titkin@int.pl →
+            </a>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div>
+                <strong>TITKIN.DEV</strong> • EST. 2025 • KIELCE, POLAND
+            </div>
+            <div class="footer-links">
+                <a href="mailto:titkin@int.pl">EMAIL</a>
+                <a href="#">GITHUB</a>
+                <a href="#">LINKEDIN</a>
+            </div>
+        </footer>
     </div>
-
-    <div class="cDot" id="cDot"></div>
-    <div class="cRing" id="cRing"></div>
-
-    <script>
-        /* --- DETEKCJA URZĄDZENIA --- */
-        const isDesktop = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-        /* --- 3D TILT --- */
-        if (isDesktop) {
-            const card = document.getElementById('hero3d');
-            card.style.transition = 'transform 0.1s ease-out';
-
-            document.addEventListener('mousemove', (e) => {
-                const x = (e.clientX / window.innerWidth) - 0.5;
-                const y = (e.clientY / window.innerHeight) - 0.5;
-                card.style.transform = `rotateX(${-y * 10}deg) rotateY(${x * 10}deg)`;
-            });
-
-            document.addEventListener('mouseleave', () => {
-                 card.style.transform = `rotateX(0deg) rotateY(0deg)`;
-            });
-        }
-
-        /* --- CUSTOM CURSOR --- */
-        if (isDesktop) {
-            const dot = document.getElementById('cDot');
-            const ring = document.getElementById('cRing');
-            
-            let mouseX = window.innerWidth / 2;
-            let mouseY = window.innerHeight / 2;
-            let ringX = mouseX;
-            let ringY = mouseY;
-
-            document.addEventListener('mousemove', e => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                dot.style.left = (mouseX - 4) + 'px';
-                dot.style.top = (mouseY - 4) + 'px';
-            });
-
-            function animateRing() {
-                ringX += (mouseX - ringX) * 0.15;
-                ringY += (mouseY - ringY) * 0.15;
-                ring.style.left = (ringX - 20) + 'px';
-                ring.style.top = (ringY - 20) + 'px';
-                requestAnimationFrame(animateRing);
-            }
-            animateRing();
-
-            const interactiveElements = document.querySelectorAll('a, .terminal, .heroCard');
-            interactiveElements.forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    ring.style.width = '60px';
-                    ring.style.height = '60px';
-                    ring.style.borderColor = 'rgba(0, 234, 255, 0.5)';
-                    ring.style.backgroundColor = 'rgba(0, 234, 255, 0.05)';
-                    dot.style.background = 'var(--accent-cyan)';
-                });
-                el.addEventListener('mouseleave', () => {
-                    ring.style.width = '40px';
-                    ring.style.height = '40px';
-                    ring.style.borderColor = 'rgba(255, 255, 255, 0.35)';
-                    ring.style.backgroundColor = 'transparent';
-                    dot.style.background = 'white';
-                });
-            });
-        }
-
-        /* --- TYPEWRITER (VIBE EDITION) --- */
-        const lines = ["sys.vibe_check()", "ai.assist(true)", "flow.state()", "make.magic()"];
-        const out = document.getElementById('typeArea');
-        let lineIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function typeLoop() {
-            const currentLine = lines[lineIndex];
-            
-            if (isDeleting) {
-                out.textContent = currentLine.substring(0, charIndex--);
-            } else {
-                out.textContent = currentLine.substring(0, charIndex++);
-            }
-
-            let typeSpeed = isDeleting ? 40 : 100;
-
-            if (!isDeleting && charIndex === currentLine.length + 1) {
-                typeSpeed = 2000;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                lineIndex = (lineIndex + 1) % lines.length;
-                typeSpeed = 500;
-            }
-
-            setTimeout(typeLoop, typeSpeed);
-        }
-        
-        setTimeout(typeLoop, 1000);
-    </script>
 </body>
 </html>
