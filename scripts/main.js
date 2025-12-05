@@ -184,7 +184,13 @@
     // ============================================
     // LANGUAGE SWITCHER
     // ============================================
-    let currentLang = localStorage.getItem('lang') || 'en';
+    // Default: Polish for Polish browsers, English for others
+    function detectDefaultLanguage() {
+        const browserLang = navigator.language || navigator.userLanguage || 'pl';
+        return browserLang.toLowerCase().startsWith('pl') ? 'pl' : 'en';
+    }
+
+    let currentLang = localStorage.getItem('lang') || detectDefaultLanguage();
 
     function setLanguage(lang) {
         currentLang = lang;
@@ -210,8 +216,8 @@
     // ============================================
     // DARK MODE
     // ============================================
-    let currentTheme = localStorage.getItem('theme') ||
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    // Default: Light theme
+    let currentTheme = localStorage.getItem('theme') || 'light';
 
     function setTheme(theme) {
         currentTheme = theme;
