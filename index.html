@@ -1,610 +1,617 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en" data-lang="en" data-theme="light">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TITKIN.DEV | Vibe Coder</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        :root {
-            --bg: #ffffff;
-            --fg: #000000;
-            --accent: #0000ff;
-            --border: #000000;
-            --subtle: #666666;
-        }
+    <!-- SEO Meta Tags -->
+    <title>TITKIN.DEV | AI-Powered Web Development & Digital Agency</title>
+    <meta name="description"
+        content="One-man AI agency delivering websites, videos, and audio at 10x speed. From concept to deployment in days, not months. See what's possible.">
+    <meta name="keywords"
+        content="AI web development, vibe coding, AI agency, web design, AI video, AI audio, generative AI">
+    <meta name="author" content="Marcin Titkin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://titkin.dev/">
 
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--fg);
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="TITKIN.DEV | The AI Agency">
+    <meta property="og:description"
+        content="Websites, videos, music — all powered by AI, directed by human vision. Ship in days, not months.">
+    <meta property="og:url" content="https://titkin.dev/">
+    <meta property="og:site_name" content="TITKIN.DEV">
+    <meta property="og:locale" content="en_US">
 
-        /* CONTAINER */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TITKIN.DEV | AI-Powered Digital Agency">
+    <meta name="twitter:description"
+        content="One architect. A swarm of AI agents. Websites, videos, and soundscapes delivered at the speed of thought.">
 
-        /* NAVBAR */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0;
-            border-bottom: 2px solid var(--border);
-        }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@700;800;900&display=swap"
+        rel="stylesheet">
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 900;
-            font-family: 'Space Grotesk', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: -0.02em;
-        }
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-        .nav-status {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/style.css">
 
-        .status-dot {
-            width: 12px;
-            height: 12px;
-            background: #00ff00;
-            border: 2px solid var(--border);
-            animation: blink 1.5s infinite;
-        }
-
-        @keyframes blink {
-            0%, 49% { opacity: 1; }
-            50%, 100% { opacity: 0.3; }
-        }
-
-        /* HERO */
-        .hero {
-            min-height: calc(100vh - 80px);
-            display: flex;
-            align-items: center;
-            padding: 4rem 0;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: var(--fg);
-            color: var(--bg);
-            font-size: 0.875rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 3rem;
-            border: 3px solid var(--border);
-            box-shadow: 6px 6px 0 var(--border);
-        }
-
-        .hero-title {
-            font-size: clamp(3.5rem, 12vw, 10rem);
-            font-weight: 900;
-            line-height: 0.9;
-            margin-bottom: 2rem;
-            font-family: 'Space Grotesk', sans-serif;
-            letter-spacing: -0.03em;
-            text-transform: uppercase;
-        }
-
-        .highlight {
-            background: var(--accent);
-            color: var(--bg);
-            padding: 0 0.2em;
-            display: inline-block;
-        }
-
-        .hero-description {
-            font-size: clamp(1.25rem, 2.5vw, 2rem);
-            max-width: 800px;
-            margin-bottom: 3rem;
-            font-weight: 600;
-            line-height: 1.4;
-        }
-
-        .hero-description strong {
-            background: var(--fg);
-            color: var(--bg);
-            padding: 0 0.3em;
-        }
-
-        /* BUTTONS */
-        .button-group {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1.25rem 3rem;
-            font-size: 1rem;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: all 0.2s ease;
-            border: 3px solid var(--border);
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: var(--fg);
-            color: var(--bg);
-            box-shadow: 6px 6px 0 var(--border);
-        }
-
-        .btn-primary:hover {
-            transform: translate(3px, 3px);
-            box-shadow: 3px 3px 0 var(--border);
-        }
-
-        .btn-primary:active {
-            transform: translate(6px, 6px);
-            box-shadow: none;
-        }
-
-        .btn-secondary {
-            background: var(--bg);
-            color: var(--fg);
-            box-shadow: 6px 6px 0 var(--border);
-        }
-
-        .btn-secondary:hover {
-            background: var(--fg);
-            color: var(--bg);
-            transform: translate(3px, 3px);
-            box-shadow: 3px 3px 0 var(--border);
-        }
-
-        /* SECTION HEADER */
-        .section-header {
-            padding: 4rem 0 3rem;
-            border-top: 2px solid var(--border);
-        }
-
-        .section-title {
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-family: 'JetBrains Mono', monospace;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-subtitle {
-            font-size: 2.5rem;
-            font-weight: 900;
-            font-family: 'Space Grotesk', sans-serif;
-            text-transform: uppercase;
-        }
-
-        /* FEATURES GRID */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0;
-            border: 3px solid var(--border);
-            margin-bottom: 0;
-        }
-
-        .feature-card {
-            padding: 3rem;
-            border-right: 3px solid var(--border);
-            border-bottom: 3px solid var(--border);
-            transition: all 0.2s ease;
-            position: relative;
-        }
-
-        .feature-card:nth-child(2n) {
-            border-right: none;
-        }
-
-        .feature-card:nth-last-child(-n+2) {
-            border-bottom: none;
-        }
-
-        .feature-card:hover {
-            background: var(--fg);
-            color: var(--bg);
-        }
-
-        .feature-card:hover .feature-icon {
-            background: var(--bg);
-            color: var(--fg);
-        }
-
-        .feature-card:hover code {
-            background: var(--bg);
-            color: var(--fg);
-        }
-
-        .feature-icon {
-            width: 64px;
-            height: 64px;
-            background: var(--fg);
-            color: var(--bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            border: 3px solid var(--border);
-            font-weight: 900;
-        }
-
-        .feature-card h3 {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-
-        .feature-card p {
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-            font-weight: 500;
-        }
-
-        .feature-card code {
-            display: block;
-            padding: 1rem;
-            background: var(--fg);
-            color: var(--bg);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            border: 3px solid var(--border);
-            font-weight: 500;
-        }
-
-        /* TERMINAL */
-        .terminal-section {
-            border-top: 2px solid var(--border);
-            padding: 4rem 0;
-        }
-
-        .terminal {
-            border: 3px solid var(--border);
-            background: var(--fg);
-            color: var(--bg);
-            box-shadow: 12px 12px 0 var(--border);
-        }
-
-        .terminal-header {
-            background: var(--bg);
-            color: var(--fg);
-            padding: 1rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            border-bottom: 3px solid var(--border);
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.875rem;
-        }
-
-        .terminal-dot {
-            width: 16px;
-            height: 16px;
-            border: 3px solid var(--border);
-        }
-
-        .dot-red { background: #ff0000; }
-        .dot-yellow { background: #ffff00; }
-        .dot-green { background: #00ff00; }
-
-        .terminal-body {
-            padding: 2.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1rem;
-            line-height: 2;
-            font-weight: 500;
-        }
-
-        .terminal-line {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .line-number {
-            color: var(--subtle);
-            user-select: none;
-            min-width: 2ch;
-        }
-
-        .code-keyword { color: #00ff00; font-weight: 700; }
-        .code-function { color: #00ffff; font-weight: 700; }
-        .code-string { color: #ffff00; }
-        .code-comment { color: var(--subtle); }
-
-        /* CTA */
-        .cta-section {
-            padding: 8rem 0;
-            text-align: center;
-            border-top: 2px solid var(--border);
-        }
-
-        .cta-title {
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 900;
-            margin-bottom: 2rem;
-            font-family: 'Space Grotesk', sans-serif;
-            text-transform: uppercase;
-            line-height: 1;
-        }
-
-        .cta-description {
-            font-size: 1.5rem;
-            margin-bottom: 3rem;
-            font-weight: 600;
-        }
-
-        /* FOOTER */
-        footer {
-            border-top: 2px solid var(--border);
-            padding: 2rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.875rem;
-            letter-spacing: 0.05em;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .footer-links a {
-            color: var(--fg);
-            text-decoration: none;
-            padding-bottom: 2px;
-            border-bottom: 3px solid transparent;
-            transition: border-color 0.2s ease;
-        }
-
-        .footer-links a:hover {
-            border-bottom-color: var(--fg);
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1.5rem;
-            }
-
-            nav {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1rem 0;
-            }
-
-            .hero {
-                min-height: auto;
-                padding: 3rem 0;
-            }
-
-            .button-group {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .btn {
-                width: 100%;
-                text-align: center;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .feature-card {
-                border-right: none !important;
-                border-bottom: 3px solid var(--border) !important;
-            }
-
-            .feature-card:last-child {
-                border-bottom: none !important;
-            }
-
-            .terminal {
-                box-shadow: 6px 6px 0 var(--border);
-            }
-
-            footer {
-                flex-direction: column;
-                gap: 1.5rem;
-                text-align: center;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-    </style>
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "TITKIN.DEV",
+        "url": "https://titkin.dev",
+        "description": "AI-powered digital agency specializing in web development, AI video, and AI audio production.",
+        "founder": {
+            "@type": "Person",
+            "name": "Marcin Titkin"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "titkin@int.pl",
+            "contactType": "customer service"
+        },
+        "sameAs": [
+            "https://github.com/titkin"
+        ]
+    }
+    </script>
 </head>
+
 <body>
+    <!-- Skip to Content -->
+    <a href="#main" class="skip-link" data-i18n="skip">Skip to main content</a>
+
     <div class="container">
         <!-- NAVBAR -->
-        <nav>
-            <div class="logo">TITKIN.DEV</div>
-            <div class="nav-status">
-                <div class="status-dot"></div>
-                <span>ONLINE</span>
-            </div>
-        </nav>
+        <header>
+            <nav>
+                <a href="/" class="logo" aria-label="TITKIN.DEV Home">TITKIN.DEV</a>
 
-        <!-- HERO -->
-        <section class="hero">
-            <div>
-                <div class="hero-badge">⚡ VIBE MODE</div>
-                
-                <h1 class="hero-title">
-                    <span class="highlight">ARCHITEKT</span><br/>
-                    INTENCJI
-                </h1>
-                
-                <p class="hero-description">
-                    Przekuwam wizje w kod z prędkością AI. 
-                    <strong>Algorytm to narzędzie</strong>, flow to metoda. 
-                    Tworzę doświadczenia cyfrowe, które łączą logikę z intuicją.
+                <div class="nav-controls">
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="control-btn" aria-label="Toggle dark mode" title="Toggle theme">
+                        <i class="ph-bold ph-sun" id="theme-icon-light"></i>
+                        <i class="ph-bold ph-moon" id="theme-icon-dark" style="display:none;"></i>
+                    </button>
+
+                    <!-- Language Toggle -->
+                    <button id="lang-toggle" class="control-btn" aria-label="Switch language" title="Switch language">
+                        <span id="lang-label">PL</span>
+                    </button>
+
+                    <div class="nav-status" aria-live="polite">
+                        <div class="status-dot" aria-hidden="true"></div>
+                        <span>ONLINE</span>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main id="main">
+            <!-- HERO -->
+            <section id="hero" class="hero" aria-labelledby="hero-title">
+                <div>
+                    <div class="hero-badge">
+                        <i class="ph-bold ph-lightning" aria-hidden="true"></i>
+                        <span data-i18n="hero.badge">AI-NATIVE AGENCY</span>
+                    </div>
+
+                    <h1 id="hero-title" class="hero-title">
+                        <span class="highlight" data-i18n="hero.title1">THE AI</span><br>
+                        <span data-i18n="hero.title2">AGENCY</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        <span data-i18n="hero.desc1">One architect. A swarm of intelligent agents.</span><br>
+                        <strong data-i18n="hero.desc2">Websites, videos, and soundscapes</strong> <span
+                            data-i18n="hero.desc3">delivered at the speed of thought.</span>
+                        <span data-i18n="hero.desc4">Traditional agencies take weeks. I ship in</span> <strong
+                            data-i18n="hero.desc5">days</strong>.
+                    </p>
+
+                    <div class="button-group">
+                        <a href="mailto:titkin@int.pl" class="btn btn-primary">
+                            <span data-i18n="hero.cta1">Start Your Project →</span>
+                        </a>
+                        <a href="#portfolio" class="btn btn-secondary">
+                            <span data-i18n="hero.cta2">See the Evidence</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SERVICES -->
+            <section id="services" aria-labelledby="services-title">
+                <div class="section-header">
+                    <div class="section-label">// <span data-i18n="services.label">CAPABILITIES</span></div>
+                    <h2 id="services-title" class="section-title" data-i18n="services.title">What I Build</h2>
+                </div>
+
+                <!-- Service: Vibe Coding -->
+                <article class="service-row">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="ph-bold ph-brackets-angle" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="service-name">VIBE<br>CODING</h3>
+                    </div>
+                    <div class="service-content">
+                        <p class="service-description" data-i18n="services.vibe.desc">
+                            I don't code manually. I orchestrate a swarm of AI agents (Claude, GPT-4, Gemini)
+                            to build complete web applications at record speed. I focus on intent architecture,
+                            not syntax.
+                        </p>
+                        <div class="service-tags">
+                            <span class="tag">#NextJS</span>
+                            <span class="tag">#Supabase</span>
+                            <span class="tag">#Tailwind</span>
+                            <span class="tag">#AI Agents</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Service: AI Video -->
+                <article class="service-row">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="ph-bold ph-film-strip" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="service-name">AI<br>VIDEO</h3>
+                    </div>
+                    <div class="service-content">
+                        <p class="service-description" data-i18n="services.video.desc">
+                            Next-generation video production. From script to finished clip. I leverage
+                            cutting-edge text-to-video and image-to-video models to create engaging
+                            marketing content.
+                        </p>
+                        <div class="service-tags">
+                            <span class="tag">#Runway</span>
+                            <span class="tag">#Pika</span>
+                            <span class="tag">#Kling</span>
+                            <span class="tag">#Motion Design</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Service: AI Audio -->
+                <article class="service-row">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="ph-bold ph-wave-sine" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="service-name">AI<br>AUDIO</h3>
+                    </div>
+                    <div class="service-content">
+                        <p class="service-description" data-i18n="services.audio.desc">
+                            Generative soundtracks, unique samples, and voice synthesis. Perfect for
+                            video marketing, podcasts, and interactive media. Sound that builds narrative.
+                        </p>
+                        <div class="service-tags">
+                            <span class="tag">#Suno</span>
+                            <span class="tag">#ElevenLabs</span>
+                            <span class="tag">#Sound Design</span>
+                            <span class="tag">#Mix & Master</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Service: AI Images -->
+                <article class="service-row">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="ph-bold ph-image" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="service-name">AI<br>IMAGES</h3>
+                    </div>
+                    <div class="service-content">
+                        <p class="service-description" data-i18n="services.images.desc">
+                            Custom visuals, product mockups, marketing assets, and artistic concepts.
+                            High-fidelity image generation tailored to your brand identity.
+                        </p>
+                        <div class="service-tags">
+                            <span class="tag">#Midjourney</span>
+                            <span class="tag">#DALL-E</span>
+                            <span class="tag">#Flux</span>
+                            <span class="tag">#Brand Assets</span>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <!-- METHOD -->
+            <section id="method" class="method-section" aria-labelledby="method-title">
+                <div class="method-grid">
+                    <!-- Manifesto -->
+                    <div class="method-manifesto">
+                        <span class="method-label">// <span data-i18n="method.label">THE METHOD</span></span>
+                        <h2 id="method-title" class="method-heading">
+                            <span data-i18n="method.title1">I Don't Sell Hours.</span><br>
+                            <span data-i18n="method.title2">I Sell</span> <span class="accent-text"
+                                data-i18n="method.title3">Results</span>.
+                        </h2>
+                        <p class="method-text">
+                            <span data-i18n="method.text1">Most agencies are people writing code. I'm an Architect who
+                                conducts
+                                an army of specialized AI agents.</span>
+                            <br><br>
+                            <span data-i18n="method.text2">This isn't "AI assistance." This is</span> <strong>Agentic
+                                Workflow</strong>.
+                            <span data-i18n="method.text3">One human with the right stack replaces a 5-person team.
+                                You get senior developer quality at a pace that seems impossible.</span>
+                        </p>
+
+                        <div class="method-stats">
+                            <div class="stat-item">
+                                <h4>10x</h4>
+                                <p><span data-i18n="method.stat1a">Faster</span><br><span
+                                        data-i18n="method.stat1b">Deployment</span></p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>24/7</h4>
+                                <p><span data-i18n="method.stat2a">Autonomous</span><br><span
+                                        data-i18n="method.stat2b">Optimization</span></p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>100%</h4>
+                                <p><span data-i18n="method.stat3a">Human</span><br><span
+                                        data-i18n="method.stat3b">Strategy</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terminal -->
+                    <div class="terminal" aria-hidden="true">
+                        <div class="terminal-header">
+                            <div class="terminal-dot dot-red"></div>
+                            <div class="terminal-dot dot-yellow"></div>
+                            <div class="terminal-dot dot-green"></div>
+                            <span class="terminal-title">orchestrator.ts</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="terminal-line">
+                                <span class="line-number">1</span>
+                                <span><span class="code-keyword">async</span> <span
+                                        class="code-function">deployProject</span>(vision) {</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="line-number">2</span>
+                                <span> <span class="code-comment">// 1. Architect Agent plans structure</span></span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="line-number">3</span>
+                                <span> <span class="code-keyword">const</span> schema = <span
+                                        class="code-keyword">await</span> agents.<span
+                                        class="code-function">architect</span>(vision);</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="line-number">4</span>
+                                <span></span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="line-number">5</span>
+                                <span> <span class="code-comment">// 2. Vibe Coder builds UI</span></span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="line-number">6</span>
+                                <span> <span class="code-keyword">const</span> ui = <span
+                                        class="code-keyword">await</span> agents.<span
+                                        class="code-function">builder</span>(schema);</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="line-number">7</span>
+                                <span></span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="line-number">8</span>
+                                <span> <span class="code-keyword">return</span> <span
+                                        class="code-function">ship</span>(ui); <span class="code-comment">// Done in
+                                        hours.</span></span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="line-number">9</span>
+                                <span>}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PORTFOLIO -->
+            <section id="portfolio" class="portfolio-section" aria-labelledby="portfolio-title">
+                <div class="section-header">
+                    <div class="section-label">// <span data-i18n="portfolio.label">EVIDENCE</span></div>
+                    <h2 id="portfolio-title" class="section-title" data-i18n="portfolio.title">Case Studies</h2>
+                </div>
+
+                <div class="data-table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col" data-i18n="portfolio.col.project">Project</th>
+                                <th scope="col" data-i18n="portfolio.col.type">Type</th>
+                                <th scope="col">Tech Stack</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Link</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Project 001 -->
+                            <tr class="accordion-toggle" onclick="toggleRow(this)" tabindex="0" role="button"
+                                aria-expanded="false">
+                                <td><i class="ph-bold ph-caret-right accordion-icon" aria-hidden="true"></i> #001</td>
+                                <td><strong>ZIRUART.COM</strong></td>
+                                <td data-i18n="portfolio.p1.type">Artist Portfolio</td>
+                                <td>HTML, CSS, JS</td>
+                                <td><span class="status-badge status-live">LIVE</span></td>
+                                <td><a href="https://ziruart.com/" target="_blank" rel="noopener"
+                                        onclick="event.stopPropagation()">[VISIT]</a></td>
+                            </tr>
+                            <tr class="details-row" aria-hidden="true">
+                                <td colspan="6">
+                                    <div class="details-content">
+                                        <div class="project-details-grid">
+                                            <div>
+                                                <h4>// <span data-i18n="portfolio.brief">PROJECT BRIEF</span></h4>
+                                                <p class="project-desc" data-i18n="portfolio.p1.desc">
+                                                    Minimalist portfolio for a pastel artist. The main challenge was
+                                                    creating an "invisible" interface that doesn't distract from the
+                                                    art,
+                                                    while maintaining maximum performance (Google PageSpeed 100/100).
+                                                </p>
+                                                <div class="project-meta">
+                                                    <span>> <span data-i18n="portfolio.client">CLIENT</span>: Zofia
+                                                        Titkin</span>
+                                                    <span>> <span data-i18n="portfolio.role">ROLE</span>: Full Design &
+                                                        Dev</span>
+                                                    <span>> <span data-i18n="portfolio.time">TIME</span>: 48h (Vibe
+                                                        Coding)</span>
+                                                </div>
+                                            </div>
+                                            <div class="project-preview">
+                                                [PREVIEW: ZIRUART HERO]
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Project 002 -->
+                            <tr class="accordion-toggle" onclick="toggleRow(this)" tabindex="0" role="button"
+                                aria-expanded="false">
+                                <td><i class="ph-bold ph-caret-right accordion-icon" aria-hidden="true"></i> #002</td>
+                                <td><strong>TITKIN.DEV</strong></td>
+                                <td>Agency Card</td>
+                                <td>Vibe Code</td>
+                                <td><span class="status-badge status-live">LIVE</span></td>
+                                <td><span class="current-badge">[CURRENT]</span></td>
+                            </tr>
+                            <tr class="details-row" aria-hidden="true">
+                                <td colspan="6">
+                                    <div class="details-content">
+                                        <div class="project-details-grid">
+                                            <div>
+                                                <h4>// META-PROJECT</h4>
+                                                <p class="project-desc" data-i18n="portfolio.p2.desc">
+                                                    This very site. An experiment in "Brutalist Engineering" style.
+                                                    Built largely by autonomous agents writing code in real-time
+                                                    under my supervision.
+                                                </p>
+                                                <div class="project-meta">
+                                                    <span>> MODE: Agentic Workflow</span>
+                                                    <span>> STACK: HTML5, CSS3, Vanilla JS</span>
+                                                </div>
+                                            </div>
+                                            <div class="project-preview">
+                                                [SYSTEM: SELF_REFLECTION]
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Project 003 -->
+                            <tr class="project-pending">
+                                <td>#003</td>
+                                <td>AI_LAB_ALPHA</td>
+                                <td>Gen-AI Tools</td>
+                                <td>Python, LangChain</td>
+                                <td><span class="status-badge status-pending">PENDING</span></td>
+                                <td><span class="locked-badge">[LOCKED]</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- FAQ -->
+            <section id="faq" class="faq-section" aria-labelledby="faq-title">
+                <div class="section-header">
+                    <div class="section-label">// FAQ</div>
+                    <h2 id="faq-title" class="section-title" data-i18n="faq.title">Common Questions</h2>
+                </div>
+
+                <div class="faq-grid">
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span data-i18n="faq.q1">What is "Vibe Coding"?</span>
+                            <i class="ph-bold ph-caret-down" aria-hidden="true"></i>
+                        </summary>
+                        <div class="faq-answer">
+                            <p data-i18n="faq.a1">It's a methodology where I direct AI agents to write code based on my
+                                architectural vision. I focus on intent and quality control, while AI handles execution.
+                                Think of it as conducting an orchestra — I don't play every instrument, but I shape the
+                                symphony.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span data-i18n="faq.q2">How fast can you deliver?</span>
+                            <i class="ph-bold ph-caret-down" aria-hidden="true"></i>
+                        </summary>
+                        <div class="faq-answer">
+                            <p data-i18n="faq.a2">Depending on scope: simple landing pages in 24-48 hours, complex
+                                websites in 1-2 weeks, full applications in 2-4 weeks. I work in sprints with clear
+                                milestones so you always know where we stand.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span data-i18n="faq.q3">Is AI-generated content lower quality?</span>
+                            <i class="ph-bold ph-caret-down" aria-hidden="true"></i>
+                        </summary>
+                        <div class="faq-answer">
+                            <p data-i18n="faq.a3">No — when properly orchestrated, AI produces senior-level code. The
+                                key is human oversight. I review, refine, and test everything before delivery. You get
+                                the speed of AI with the judgment of an experienced developer.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span data-i18n="faq.q4">What technologies do you use?</span>
+                            <i class="ph-bold ph-caret-down" aria-hidden="true"></i>
+                        </summary>
+                        <div class="faq-answer">
+                            <p data-i18n="faq.a4">For web: HTML/CSS/JS for static sites, Next.js for apps, Supabase for
+                                backends. For AI content: Runway & Pika (video), Suno & ElevenLabs (audio), Midjourney &
+                                Flux (images). I stay current with the latest models.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span data-i18n="faq.q5">How does pricing work?</span>
+                            <i class="ph-bold ph-caret-down" aria-hidden="true"></i>
+                        </summary>
+                        <div class="faq-answer">
+                            <p data-i18n="faq.a5">Project-based, not hourly. You pay for outcomes, not time spent. This
+                                aligns our incentives — the faster I deliver quality work, the better for both of us.
+                                Reach out for a custom quote based on your specific needs.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span data-i18n="faq.q6">Can you work with my existing site?</span>
+                            <i class="ph-bold ph-caret-down" aria-hidden="true"></i>
+                        </summary>
+                        <div class="faq-answer">
+                            <p data-i18n="faq.a6">Yes — I can redesign, optimize, extend, or completely rebuild existing
+                                projects. I'll analyze what you have and recommend the most efficient path forward.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span data-i18n="faq.q7">What if I'm not satisfied?</span>
+                            <i class="ph-bold ph-caret-down" aria-hidden="true"></i>
+                        </summary>
+                        <div class="faq-answer">
+                            <p data-i18n="faq.a7">Clear milestones with review points at each stage. We iterate until
+                                you're happy. I don't consider a project done until you've signed off on the results.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span data-i18n="faq.q8">Do you offer ongoing support?</span>
+                            <i class="ph-bold ph-caret-down" aria-hidden="true"></i>
+                        </summary>
+                        <div class="faq-answer">
+                            <p data-i18n="faq.a8">Yes — maintenance packages available for hosting, updates, content
+                                changes, and new features. I can also train you or your team to manage the site
+                                independently.</p>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section id="contact" class="cta-section" aria-labelledby="cta-title">
+                <h2 id="cta-title" class="cta-title">
+                    <span data-i18n="cta.title1">Have an Idea?</span><br>
+                    <span data-i18n="cta.title2">Let's Build It Together.</span>
+                </h2>
+                <p class="cta-description" data-i18n="cta.desc">
+                    From concept to deployment. Fast, precise, with attention to detail.
                 </p>
-                
-                <div class="button-group">
-                    <a href="mailto:titkin@int.pl" class="btn btn-primary">
-                        Połącz się →
-                    </a>
-                    <a href="#features" class="btn btn-secondary">
-                        Zobacz stack
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- FEATURES -->
-        <section id="features">
-            <div class="section-header">
-                <div class="section-title">// STACK & CAPABILITIES</div>
-                <div class="section-subtitle">Czym się zajmuję</div>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Vibe Coding</h3>
-                    <p>Programowanie w stanie flow. AI jako partner, nie zamiennik. Szybkie prototypy, czyste rozwiązania.</p>
-                    <code>const vibe = code + intuition</code>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🏗️</div>
-                    <h3>Logic Architecture</h3>
-                    <p>Od koncepcji do produkcji. Fullstack development z naciskiem na skalowalność i performance.</p>
-                    <code>React • Next.js • Node • APIs</code>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>LLM Whispering</h3>
-                    <p>Prompt engineering na poziomie zaawansowanym. Integracje AI, które faktycznie działają.</p>
-                    <code>GPT-4 • Claude • Custom Models</code>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🎵</div>
-                    <h3>AI Audio Design</h3>
-                    <p>Generatywna muzyka i sound design. Suno AI, voice synthesis, audio processing.</p>
-                    <code>Suno • ElevenLabs • Audio APIs</code>
-                </div>
-            </div>
-        </section>
-
-        <!-- TERMINAL -->
-        <section class="terminal-section">
-            <div class="section-header" style="padding-top: 0; border: none;">
-                <div class="section-title">// LIVE PROCESS</div>
-                <div class="section-subtitle">Jak pracuję</div>
-            </div>
-            
-            <div class="terminal">
-                <div class="terminal-header">
-                    <div class="terminal-dot dot-red"></div>
-                    <div class="terminal-dot dot-yellow"></div>
-                    <div class="terminal-dot dot-green"></div>
-                    <span style="margin-left: 1rem;">vibe-session.js</span>
-                </div>
-                <div class="terminal-body">
-                    <div class="terminal-line">
-                        <span class="line-number">1</span>
-                        <span><span class="code-keyword">const</span> <span class="code-function">createMagic</span> = <span class="code-keyword">async</span> () => {</span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="line-number">2</span>
-                        <span>  <span class="code-keyword">const</span> idea = <span class="code-keyword">await</span> <span class="code-function">captureVision</span>();</span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="line-number">3</span>
-                        <span>  <span class="code-keyword">const</span> prototype = <span class="code-function">rapidDev</span>(idea);</span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="line-number">4</span>
-                        <span>  <span class="code-keyword">const</span> refined = <span class="code-keyword">await</span> <span class="code-function">aiAssist</span>(prototype);</span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="line-number">5</span>
-                        <span>  <span class="code-keyword">return</span> <span class="code-function">deploy</span>(refined);</span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="line-number">6</span>
-                        <span>}</span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="line-number">7</span>
-                        <span></span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="line-number">8</span>
-                        <span class="code-comment">// Proces twórczy w stanie flow</span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="line-number">9</span>
-                        <span><span class="code-function">createMagic</span>().<span class="code-function">then</span>(() => console.<span class="code-function">log</span>(<span class="code-string">'✨'</span>));</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="cta-section">
-            <h2 class="cta-title">
-                Masz pomysł?<br/>
-                Zbudujmy to razem.
-            </h2>
-            <p class="cta-description">
-                Od koncepcji po deployment. Szybko, sprawnie, z dbałością o detale.
-            </p>
-            <a href="mailto:titkin@int.pl" class="btn btn-primary">
-                titkin@int.pl →
-            </a>
-        </section>
+                <a href="mailto:titkin@int.pl" class="btn btn-primary btn-large">
+                    titkin@int.pl →
+                </a>
+            </section>
+        </main>
 
         <!-- FOOTER -->
         <footer>
-            <div>
-                <strong>TITKIN.DEV</strong> • EST. 2025 • KIELCE, POLAND
+            <div class="footer-grid">
+                <!-- Brand -->
+                <div class="footer-col">
+                    <span class="footer-logo">TITKIN.DEV</span>
+                    <p class="footer-desc" data-i18n="footer.desc">
+                        AI-native agency. Combining human intuition with a swarm of AI agents
+                        to deliver software faster than ever thought possible.
+                    </p>
+                    <div class="footer-tags">
+                        <span class="tag">#AI_NATIVE</span>
+                        <span class="tag">#BRUTALISM</span>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="footer-col">
+                    <h4 data-i18n="footer.nav">Navigation</h4>
+                    <nav class="footer-links" aria-label="Footer navigation">
+                        <a href="#hero"><i class="ph-bold ph-arrow-right" aria-hidden="true"></i> <span
+                                data-i18n="footer.home">Home</span></a>
+                        <a href="#services"><i class="ph-bold ph-arrow-right" aria-hidden="true"></i> <span
+                                data-i18n="footer.services">Services</span></a>
+                        <a href="#portfolio"><i class="ph-bold ph-arrow-right" aria-hidden="true"></i> Portfolio</a>
+                        <a href="#contact"><i class="ph-bold ph-arrow-right" aria-hidden="true"></i> <span
+                                data-i18n="footer.contact">Contact</span></a>
+                    </nav>
+                </div>
+
+                <!-- Connect -->
+                <div class="footer-col">
+                    <h4 data-i18n="footer.connect">Connect</h4>
+                    <nav class="footer-links" aria-label="Social links">
+                        <a href="mailto:titkin@int.pl"><i class="ph-bold ph-envelope-simple" aria-hidden="true"></i>
+                            Email</a>
+                        <a href="https://github.com/titkin" target="_blank" rel="noopener"><i
+                                class="ph-bold ph-github-logo" aria-hidden="true"></i> GitHub</a>
+                        <a href="https://linkedin.com/in/titkin" target="_blank" rel="noopener"><i
+                                class="ph-bold ph-linkedin-logo" aria-hidden="true"></i> LinkedIn</a>
+                    </nav>
+                </div>
             </div>
-            <div class="footer-links">
-                <a href="mailto:titkin@int.pl">EMAIL</a>
-                <a href="#">GITHUB</a>
-                <a href="#">LINKEDIN</a>
+
+            <div class="footer-bottom">
+                <div data-i18n="footer.copyright">© 2025 TITKIN.DEV. All rights reserved.</div>
+                <div class="footer-status">
+                    <span class="status-dot dot-green" aria-hidden="true"></span>
+                    SYSTEM ONLINE
+                </div>
             </div>
         </footer>
     </div>
+
+    <!-- Scripts -->
+    <script src="scripts/main.js" defer></script>
 </body>
+
 </html>
