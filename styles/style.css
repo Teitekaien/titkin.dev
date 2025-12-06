@@ -1169,3 +1169,179 @@ footer {
         border-bottom: none;
     }
 }
+
+/* ============================================
+   MOBILE OPTIMIZATIONS
+   ============================================ */
+
+/* Portfolio Table - Horizontal Scroll */
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 calc(-1 * var(--space-5));
+        padding: 0 var(--space-5);
+    }
+
+    .table-responsive table {
+        min-width: 600px;
+    }
+
+    .table-responsive th,
+    .table-responsive td {
+        white-space: nowrap;
+        padding: var(--space-3) var(--space-2);
+        font-size: 0.85rem;
+    }
+
+    /* Hide less important columns on mobile */
+    .table-responsive th:nth-child(4),
+    .table-responsive td:nth-child(4) {
+        display: none;
+    }
+}
+
+/* Slideshow - Bigger on Mobile */
+@media (max-width: 768px) {
+    .project-slideshow {
+        aspect-ratio: 4/3 !important;
+        margin-top: var(--space-4);
+    }
+
+    .project-details-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--space-4);
+    }
+
+    .details-content {
+        padding: var(--space-4);
+    }
+
+    .project-meta {
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+
+    .service-tags {
+        flex-wrap: wrap;
+    }
+
+    .service-tags .tag {
+        font-size: 0.75rem;
+        padding: var(--space-1) var(--space-2);
+    }
+}
+
+/* Navigation - Mobile Friendly */
+@media (max-width: 768px) {
+    nav {
+        flex-wrap: wrap;
+        gap: var(--space-3);
+    }
+
+    .nav-logo {
+        flex: 1;
+        min-width: 100%;
+        text-align: center;
+        padding-bottom: var(--space-3);
+        border-bottom: 1px solid var(--color-primary);
+    }
+
+    .nav-links {
+        display: none;
+        /* Hidden on mobile - can add hamburger later */
+    }
+
+    .nav-controls {
+        flex: 1;
+        justify-content: center;
+        gap: var(--space-2);
+    }
+
+    .nav-controls button {
+        min-width: 44px;
+        min-height: 44px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Touch Targets - Min 44x44px */
+@media (max-width: 768px) {
+
+    .btn,
+    button,
+    a {
+        min-height: 44px;
+    }
+
+    .faq-question {
+        padding: var(--space-4);
+        min-height: 56px;
+    }
+
+    .accordion-toggle td {
+        padding: var(--space-3) var(--space-2);
+    }
+}
+
+/* Hero - Mobile Adjustments */
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+        line-height: 1.1;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .hero .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Terminal - Mobile Scroll */
+@media (max-width: 480px) {
+    .terminal {
+        margin: 0 calc(-1 * var(--space-4));
+        border-left: none;
+        border-right: none;
+    }
+
+    .terminal-body {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+    .terminal-body code {
+        font-size: 0.75rem;
+    }
+}
+
+/* CTA Section - Mobile */
+@media (max-width: 480px) {
+    .cta-section {
+        padding: var(--space-8) var(--space-4);
+    }
+
+    .cta-title {
+        font-size: 1.8rem;
+    }
+
+    .cta-description {
+        font-size: 0.95rem;
+    }
+}
+
+/* Footer Tags - Wrap */
+@media (max-width: 480px) {
+    .footer-tags {
+        flex-wrap: wrap;
+        gap: var(--space-2);
+    }
+
+    .footer-tags .tag {
+        font-size: 0.75rem;
+    }
+}
