@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
     <!-- SEO Meta Tags -->
     <title>TITKIN.DEV | AI-Powered Web Development & Digital Agency</title>
     <meta name="description"
@@ -353,7 +356,7 @@
                                 <td><i class="ph-bold ph-caret-right accordion-icon" aria-hidden="true"></i> #001</td>
                                 <td><strong>ZIRUART.COM</strong></td>
                                 <td data-i18n="portfolio.p1.type">Artist Portfolio</td>
-                                <td>HTML, CSS, JS</td>
+                                <td>Canvas API, JS, WebP</td>
                                 <td><span class="status-badge status-live">LIVE</span></td>
                                 <td><a href="https://ziruart.com/" target="_blank" rel="noopener"
                                         onclick="event.stopPropagation()">[VISIT]</a></td>
@@ -365,22 +368,63 @@
                                             <div>
                                                 <h4>// <span data-i18n="portfolio.brief">PROJECT BRIEF</span></h4>
                                                 <p class="project-desc" data-i18n="portfolio.p1.desc">
-                                                    Minimalist portfolio for a pastel artist. The main challenge was
-                                                    creating an "invisible" interface that doesn't distract from the
-                                                    art,
-                                                    while maintaining maximum performance (Google PageSpeed 100/100).
+                                                    Artist portfolio featuring a custom Canvas-based Low-Poly generative
+                                                    animation in the hero section. Angular Design System with sharp
+                                                    corners throughout, matching the Op-Art painting style. Mobile-first
+                                                    with touch-optimized galleries and WebP image optimization.
                                                 </p>
-                                                <div class="project-meta">
-                                                    <span>> <span data-i18n="portfolio.client">CLIENT</span>: Zofia
-                                                        Titkin</span>
+
+                                                <h4 style="margin-top: 16px;">// KEY FEATURES</h4>
+                                                <ul class="project-features"
+                                                    style="font-family: var(--font-mono); font-size: 0.8rem; margin: 8px 0; list-style: none;">
+                                                    <li>→ Generative Canvas Animation (Low-Poly mesh)</li>
+                                                    <li>→ Angular Design System (0 border-radius)</li>
+                                                    <li>→ Op-Art CSS Patterns (dots, diamonds, triangles)</li>
+                                                    <li>→ Room Mockup Visualizations</li>
+                                                    <li>→ Swipe Gestures + Lightbox</li>
+                                                    <li>→ Schema.org VisualArtist markup</li>
+                                                </ul>
+
+                                                <h4 style="margin-top: 16px;">// TECH STACK</h4>
+                                                <div class="service-tags" style="margin-top: 8px;">
+                                                    <span class="tag">Canvas API</span>
+                                                    <span class="tag">Vanilla JS</span>
+                                                    <span class="tag">WebP</span>
+                                                    <span class="tag">CSS Patterns</span>
+                                                    <span class="tag">Schema.org</span>
+                                                </div>
+
+                                                <div class="project-meta" style="margin-top: 16px;">
+                                                    <span>> <span data-i18n="portfolio.client">CLIENT</span>: Artystka
+                                                        malarka</span>
                                                     <span>> <span data-i18n="portfolio.role">ROLE</span>: Full Design &
                                                         Dev</span>
                                                     <span>> <span data-i18n="portfolio.time">TIME</span>: 48h (Vibe
                                                         Coding)</span>
+                                                    <span>> PERFORMANCE: ~18KB JS, Critical CSS inlined</span>
                                                 </div>
                                             </div>
-                                            <div class="project-preview">
-                                                [PREVIEW: ZIRUART HERO]
+                                            <div class="project-slideshow" data-slideshow
+                                                style="position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; border: 2px solid var(--color-primary);">
+                                                <img src="assets/ziruart-01-hero.png"
+                                                    alt="ZIRUART.COM Hero - Generative Low-Poly Animation"
+                                                    class="slideshow-img active"
+                                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 0.5s ease;">
+                                                <img src="assets/ziruart-02-art.png"
+                                                    alt="ZIRUART.COM Featured Art - Geometric Animals Series"
+                                                    class="slideshow-img"
+                                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease;">
+                                                <img src="assets/ziruart-03-philosophy.png"
+                                                    alt="ZIRUART.COM Philosophy - Language of Geometry"
+                                                    class="slideshow-img"
+                                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease;">
+                                                <img src="assets/ziruart-04-about.png"
+                                                    alt="ZIRUART.COM About - Artist Profile and Exhibitions"
+                                                    class="slideshow-img"
+                                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease;">
+                                                <img src="assets/ziruart-05-shop.png"
+                                                    alt="ZIRUART.COM Shop - Invest in Art Section" class="slideshow-img"
+                                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease;">
                                             </div>
                                         </div>
                                     </div>
@@ -453,6 +497,20 @@
                                 architectural vision. I focus on intent and quality control, while AI handles execution.
                                 Think of it as conducting an orchestra — I don't play every instrument, but I shape the
                                 symphony.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span data-i18n="faq.q9">Do I need WordPress or a CMS?</span>
+                            <i class="ph-bold ph-caret-down" aria-hidden="true"></i>
+                        </summary>
+                        <div class="faq-answer">
+                            <p data-i18n="faq.a9">For portfolios, landing pages, and business cards — no. Static sites
+                                are blazing fast, cheaper to host (often free), and unhackable (no backend = no
+                                vulnerabilities). WordPress makes sense for blogs with hundreds of posts or e-commerce.
+                                For most small businesses, a static site with my support is the better choice: zero
+                                maintenance, maximum performance.</p>
                         </div>
                     </details>
 
@@ -592,10 +650,6 @@
                     <nav class="footer-links" aria-label="Social links">
                         <a href="mailto:titkin@int.pl"><i class="ph-bold ph-envelope-simple" aria-hidden="true"></i>
                             Email</a>
-                        <a href="https://github.com/titkin" target="_blank" rel="noopener"><i
-                                class="ph-bold ph-github-logo" aria-hidden="true"></i> GitHub</a>
-                        <a href="https://linkedin.com/in/titkin" target="_blank" rel="noopener"><i
-                                class="ph-bold ph-linkedin-logo" aria-hidden="true"></i> LinkedIn</a>
                     </nav>
                 </div>
             </div>

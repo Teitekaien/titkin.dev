@@ -58,7 +58,7 @@
             'portfolio.role': 'ROLE',
             'portfolio.time': 'TIME',
             'portfolio.p1.type': 'Artist Portfolio',
-            'portfolio.p1.desc': 'Minimalist portfolio for a pastel artist. The main challenge was creating an "invisible" interface that doesn\'t distract from the art, while maintaining maximum performance (Google PageSpeed 100/100).',
+            'portfolio.p1.desc': 'Artist portfolio featuring a custom Canvas-based Low-Poly generative animation in the hero section. Angular Design System with sharp corners throughout, matching the Op-Art painting style. Mobile-first with touch-optimized galleries and WebP image optimization.',
             'portfolio.p2.desc': 'This very site. An experiment in "Brutalist Engineering" style. Built largely by autonomous agents writing code in real-time under my supervision.',
 
             // FAQ
@@ -79,6 +79,8 @@
             'faq.a7': "Clear milestones with review points at each stage. We iterate until you're happy. I don't consider a project done until you've signed off on the results.",
             'faq.q8': 'Do you offer ongoing support?',
             'faq.a8': 'Yes — maintenance packages available for hosting, updates, content changes, and new features. I can also train you or your team to manage the site independently.',
+            'faq.q9': 'Do I need WordPress or a CMS?',
+            'faq.a9': 'For portfolios, landing pages, and business cards — no. Static sites are blazing fast, cheaper to host (often free), and unhackable (no backend = no vulnerabilities). WordPress makes sense for blogs with hundreds of posts or e-commerce. For most small businesses, a static site with my support is the better choice: zero maintenance, maximum performance.',
 
             // CTA
             'cta.title1': 'Have an Idea?',
@@ -143,7 +145,7 @@
             'portfolio.role': 'ROLA',
             'portfolio.time': 'CZAS',
             'portfolio.p1.type': 'Portfolio artysty',
-            'portfolio.p1.desc': 'Minimalistyczne portfolio dla artystki pastelowej. Głównym wyzwaniem było stworzenie "niewidzialnego" interfejsu, który nie odciąga uwagi od sztuki, przy zachowaniu maksymalnej wydajności (Google PageSpeed 100/100).',
+            'portfolio.p1.desc': 'Portfolio artystki z generatywną animacją Low-Poly Canvas w sekcji hero. Angular Design System z ostrymi krawędziami, dopasowany do stylu obrazów Op-Art. Mobile-first z galeriami obsługującymi gesty i optymalizacją obrazów WebP.',
             'portfolio.p2.desc': 'Ta strona. Eksperyment ze stylem "Brutalist Engineering". Zbudowana w dużej mierze przez autonomiczne agenty piszące kod w czasie rzeczywistym pod moim nadzorem.',
 
             // FAQ
@@ -164,6 +166,8 @@
             'faq.a7': 'Jasne kamienie milowe z punktami kontrolnymi na każdym etapie. Iterujemy aż będziesz zadowolony. Nie uważam projektu za ukończony, dopóki nie zaakceptujesz rezultatów.',
             'faq.q8': 'Czy oferujesz wsparcie po wdrożeniu?',
             'faq.a8': 'Tak — dostępne pakiety utrzymania obejmujące hosting, aktualizacje, zmiany treści i nowe funkcje. Mogę też przeszkolić Ciebie lub Twój zespół do samodzielnego zarządzania stroną.',
+            'faq.q9': 'Czy potrzebuję WordPressa lub CMS?',
+            'faq.a9': 'Do portfolio, landing page i wizytówek — nie. Strony statyczne są błyskawicznie szybkie, tańsze w hostingu (często darmowe) i niemożliwe do zhakowania (brak backendu = brak luk). WordPress ma sens przy blogach z setkami wpisów lub e-commerce. Dla większości małych firm strona statyczna z moim wsparciem to lepszy wybór: zero maintenance, maksymalna wydajność.',
 
             // CTA
             'cta.title1': 'Masz pomysł?',
@@ -322,4 +326,137 @@
 
     // Console message
     console.log('%cTITKIN.DEV - Built with AI agents', 'font-size: 16px; font-weight: bold;');
+
+    // ============================================
+    // PORTFOLIO SLIDESHOW + LIGHTBOX
+    // ============================================
+    function initSlideshows() {
+        document.querySelectorAll('[data-slideshow]').forEach(function (slideshow) {
+            const images = slideshow.querySelectorAll('.slideshow-img');
+            if (images.length < 2) return;
+
+            let currentIndex = 0;
+
+            setInterval(function () {
+                images[currentIndex].style.opacity = '0';
+                images[currentIndex].classList.remove('active');
+
+                currentIndex = (currentIndex + 1) % images.length;
+
+                images[currentIndex].style.opacity = '1';
+                images[currentIndex].classList.add('active');
+            }, 1500);
+
+            // Lightbox on click
+            slideshow.style.cursor = 'zoom-in';
+            slideshow.addEventListener('click', function (e) {
+                e.stopPropagation();
+                openLightbox(slideshow);
+            });
+        });
+    }
+
+    // Lightbox state
+    let lightboxImages = [];
+    let lightboxCurrentIndex = 0;
+
+    // Lightbox functions
+    function openLightbox(slideshow) {
+        // Get all images from the slideshow
+        const images = slideshow.querySelectorAll('.slideshow-img');
+        lightboxImages = Array.from(images).map(img => ({ src: img.src, alt: img.alt }));
+
+        // Find active image index
+        const activeImg = slideshow.querySelector('.slideshow-img.active');
+        lightboxCurrentIndex = activeImg ? Array.from(images).indexOf(activeImg) : 0;
+
+        // Create lightbox overlay
+        const lightbox = document.createElement('div');
+        lightbox.id = 'lightbox-overlay';
+        lightbox.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 20px; box-sizing: border-box;';
+
+        // Main container with arrows and image
+        const mainContainer = document.createElement('div');
+        mainContainer.style.cssText = 'display: flex; align-items: center; justify-content: center; gap: 20px; max-width: 95vw; max-height: 95vh;';
+
+        // Left arrow
+        const leftArrow = document.createElement('button');
+        leftArrow.innerHTML = '‹';
+        leftArrow.style.cssText = 'background: rgba(255,255,255,0.1); border: 2px solid #fff; color: #fff; font-size: 48px; width: 60px; height: 80px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; flex-shrink: 0;';
+        leftArrow.addEventListener('mouseenter', function () { this.style.background = 'rgba(255,255,255,0.3)'; });
+        leftArrow.addEventListener('mouseleave', function () { this.style.background = 'rgba(255,255,255,0.1)'; });
+        leftArrow.addEventListener('click', function (e) { e.stopPropagation(); navigateLightbox(-1); });
+
+        // Image - click to close
+        const img = document.createElement('img');
+        img.id = 'lightbox-img';
+        img.src = lightboxImages[lightboxCurrentIndex].src;
+        img.alt = lightboxImages[lightboxCurrentIndex].alt;
+        img.style.cssText = 'max-width: calc(100vw - 200px); max-height: 95vh; object-fit: contain; border: 3px solid #fff; cursor: zoom-out;';
+        img.addEventListener('click', function (e) { e.stopPropagation(); closeLightbox(); });
+
+        // Right arrow
+        const rightArrow = document.createElement('button');
+        rightArrow.innerHTML = '›';
+        rightArrow.style.cssText = 'background: rgba(255,255,255,0.1); border: 2px solid #fff; color: #fff; font-size: 48px; width: 60px; height: 80px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; flex-shrink: 0;';
+        rightArrow.addEventListener('mouseenter', function () { this.style.background = 'rgba(255,255,255,0.3)'; });
+        rightArrow.addEventListener('mouseleave', function () { this.style.background = 'rgba(255,255,255,0.1)'; });
+        rightArrow.addEventListener('click', function (e) { e.stopPropagation(); navigateLightbox(1); });
+
+        // Close button
+        const closeBtn = document.createElement('button');
+        closeBtn.innerHTML = '×';
+        closeBtn.style.cssText = 'position: fixed; top: 20px; right: 20px; background: transparent; border: none; color: #fff; font-size: 40px; cursor: pointer; width: 50px; height: 50px;';
+        closeBtn.addEventListener('click', closeLightbox);
+
+        mainContainer.appendChild(leftArrow);
+        mainContainer.appendChild(img);
+        mainContainer.appendChild(rightArrow);
+
+        lightbox.appendChild(mainContainer);
+        lightbox.appendChild(closeBtn);
+        document.body.appendChild(lightbox);
+        document.body.style.overflow = 'hidden';
+
+        // Close on background click
+        lightbox.addEventListener('click', closeLightbox);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', handleLightboxKey);
+    }
+
+    function navigateLightbox(direction) {
+        lightboxCurrentIndex = (lightboxCurrentIndex + direction + lightboxImages.length) % lightboxImages.length;
+        const img = document.getElementById('lightbox-img');
+        if (img) {
+            img.src = lightboxImages[lightboxCurrentIndex].src;
+            img.alt = lightboxImages[lightboxCurrentIndex].alt;
+        }
+    }
+
+    function closeLightbox() {
+        const lightbox = document.getElementById('lightbox-overlay');
+        if (lightbox) {
+            lightbox.remove();
+            document.body.style.overflow = '';
+            document.removeEventListener('keydown', handleLightboxKey);
+        }
+    }
+
+    function handleLightboxKey(e) {
+        if (e.key === 'Escape') {
+            closeLightbox();
+        } else if (e.key === 'ArrowLeft') {
+            navigateLightbox(-1);
+        } else if (e.key === 'ArrowRight') {
+            navigateLightbox(1);
+        }
+    }
+
+    // Initialize slideshows after DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSlideshows);
+    } else {
+        initSlideshows();
+    }
 })();

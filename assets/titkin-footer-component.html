@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITKIN.DEV Footer Component</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ============================================
+           TITKIN.DEV FOOTER COMPONENT
+           Reużywalna stopka do projektów
+           ============================================ */
+
+        /* WERSJA 1: Minimalistyczna (jedna linia) */
+        .titkin-footer-minimal {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #6b7280;
+            text-align: center;
+            padding: 16px;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .titkin-footer-minimal a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+
+        .titkin-footer-minimal a:hover {
+            color: #3366cc;
+        }
+
+        /* WERSJA 2: Brutalist Badge */
+        .titkin-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #1a1a1a;
+            color: #fafafa;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            border: 2px solid #1a1a1a;
+            transition: all 0.2s;
+        }
+
+        .titkin-badge:hover {
+            background: #fafafa;
+            color: #1a1a1a;
+            box-shadow: 4px 4px 0 #1a1a1a;
+            transform: translate(-2px, -2px);
+        }
+
+        .titkin-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 0;
+        }
+
+        /* WERSJA 3: Pełna stopka z logo */
+        .titkin-footer-full {
+            font-family: 'JetBrains Mono', monospace;
+            background: #1a1a1a;
+            color: #fafafa;
+            padding: 24px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 3px solid #1a1a1a;
+        }
+
+        .titkin-footer-full .titkin-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            color: #fafafa;
+            text-decoration: none;
+        }
+
+        .titkin-footer-full .titkin-logo:hover {
+            color: #22c55e;
+        }
+
+        .titkin-footer-full .titkin-credit {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #9ca3af;
+        }
+
+        /* WERSJA 4: Stopka z shadow (najbardziej brutalist) */
+        .titkin-footer-shadow {
+            font-family: 'JetBrains Mono', monospace;
+            background: #fafafa;
+            color: #1a1a1a;
+            padding: 16px 24px;
+            border: 3px solid #1a1a1a;
+            box-shadow: 6px 6px 0 #1a1a1a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 24px;
+        }
+
+        .titkin-footer-shadow a {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #1a1a1a;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .titkin-footer-shadow a:hover {
+            color: #3366cc;
+        }
+
+        .titkin-footer-shadow .credit-text {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #6b7280;
+        }
+
+        /* ============================================
+           DARK MODE VARIANTS
+           ============================================ */
+
+        .dark .titkin-footer-minimal {
+            border-top-color: #333;
+            color: #9ca3af;
+        }
+
+        .dark .titkin-footer-minimal a {
+            color: #e5e5e5;
+        }
+
+        .dark .titkin-footer-minimal a:hover {
+            color: #6699ff;
+        }
+
+        .dark .titkin-badge {
+            background: #e5e5e5;
+            color: #121212;
+            border-color: #e5e5e5;
+        }
+
+        .dark .titkin-badge:hover {
+            background: #121212;
+            color: #e5e5e5;
+            box-shadow: 4px 4px 0 #e5e5e5;
+        }
+
+        .dark .titkin-footer-shadow {
+            background: #1f1f1f;
+            color: #e5e5e5;
+            border-color: #e5e5e5;
+            box-shadow: 6px 6px 0 #e5e5e5;
+        }
+
+        .dark .titkin-footer-shadow a {
+            color: #e5e5e5;
+        }
+
+        .dark .titkin-footer-shadow a:hover {
+            color: #6699ff;
+        }
+
+        .dark .titkin-footer-shadow .credit-text {
+            color: #9ca3af;
+        }
+
+        /* ============================================
+           DEMO STYLES (usuń w produkcji)
+           ============================================ */
+        body {
+            font-family: sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fafafa;
+        }
+
+        .demo-section {
+            margin-bottom: 60px;
+        }
+
+        .demo-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #6b7280;
+            margin-bottom: 16px;
+        }
+
+        .demo-dark {
+            background: #121212;
+            padding: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- WERSJA 1: Minimalistyczna -->
+    <div class="demo-section">
+        <h2>// Wersja 1: Minimalistyczna</h2>
+        <div class="titkin-footer-minimal">
+            Stworzone przez <a href="https://titkin.dev" target="_blank">TITKIN.DEV</a>
+        </div>
+    </div>
+
+    <!-- WERSJA 2: Badge -->
+    <div class="demo-section">
+        <h2>// Wersja 2: Badge</h2>
+        <p style="text-align: center;">
+            <a href="https://titkin.dev" target="_blank" class="titkin-badge">
+                <span class="titkin-badge-dot"></span>
+                Built by TITKIN.DEV
+            </a>
+        </p>
+    </div>
+
+    <!-- WERSJA 3: Pełna stopka -->
+    <div class="demo-section">
+        <h2>// Wersja 3: Pełna stopka</h2>
+        <div class="titkin-footer-full">
+            <a href="https://titkin.dev" target="_blank" class="titkin-logo">TITKIN.DEV</a>
+            <span class="titkin-credit">© 2025 • Vibe Coded with AI</span>
+        </div>
+    </div>
+
+    <!-- WERSJA 4: Shadow (Brutalist) -->
+    <div class="demo-section">
+        <h2>// Wersja 4: Shadow (Brutalist)</h2>
+        <div class="titkin-footer-shadow">
+            <span class="credit-text">Projekt zrealizowany przez</span>
+            <a href="https://titkin.dev" target="_blank">TITKIN.DEV</a>
+        </div>
+    </div>
+
+    <!-- DARK MODE DEMOS -->
+    <div class="demo-section">
+        <h2>// Dark Mode Variants</h2>
+        <div class="demo-dark dark">
+            <div class="titkin-footer-minimal" style="margin-bottom: 24px;">
+                Stworzone przez <a href="https://titkin.dev" target="_blank">TITKIN.DEV</a>
+            </div>
+
+            <p style="text-align: center; margin-bottom: 24px;">
+                <a href="https://titkin.dev" target="_blank" class="titkin-badge">
+                    <span class="titkin-badge-dot"></span>
+                    Built by TITKIN.DEV
+                </a>
+            </p>
+
+            <div class="titkin-footer-shadow">
+                <span class="credit-text">Projekt zrealizowany przez</span>
+                <a href="https://titkin.dev" target="_blank">TITKIN.DEV</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

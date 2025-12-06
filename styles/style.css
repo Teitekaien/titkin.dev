@@ -123,6 +123,17 @@
     background: var(--color-accent);
 }
 
+/* Status badges in dark mode */
+[data-theme="dark"] .status-badge {
+    border-color: #333;
+}
+
+[data-theme="dark"] .status-live {
+    background: var(--color-success);
+    color: #121212;
+    border-color: var(--color-success);
+}
+
 /* --------------------------------------------
    RESET & BASE
    -------------------------------------------- */
